@@ -4,7 +4,7 @@ import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import { connect } from 'react-redux';
 
-function App(selectedContact) {
+function App({selectedContact}) {
 	
 		return (
 			<div className='container'>

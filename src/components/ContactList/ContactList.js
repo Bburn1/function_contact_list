@@ -3,7 +3,6 @@ import ContactItem from '../ContactItem/ContactItem';
 import './ContactList.css';
 import { connect } from 'react-redux';
 import contactService from '../../contact-service';
-import logger from 'redux-logger';
 import { getContact, deleteContact,addNewContact,selectContact } from '../../store/actions/ContactAction';
 
 function ContactList({contacts,getContact, addNewContact,selectContact, deleteContact}){

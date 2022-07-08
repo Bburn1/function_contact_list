@@ -52,7 +52,7 @@ function ContactForm({contactForEdit, onDelete,createContact,updateContact}){
     .catch(err => console.log(err))  
 	onDelete((editContact.id))
 	}
-	console.log(editContact.id);
+	console.log(editContact);
 		return (
 			<form id='contact-form' onSubmit={onFormSubmit}>
 				<div className='form-container'>

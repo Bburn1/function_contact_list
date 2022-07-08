@@ -15,33 +15,17 @@
   ],
   "contacts": [
     {
+      "selectedContact": {
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "phone": ""
+      },
       "firstName": "Kornienko",
       "lastName": "bohdan",
       "email": "bogdanburn123@gmail.com",
       "phone": "0979608233",
-      "id": 1657271287174
-    },
-    {
-      "firstName": "fdxfds",
-      "lastName": "fsdf",
-      "email": "bogdanburn123@gmail.com",
-      "phone": "0979608233",
-      "id": 1657271292446
-    },
-    {
-      
-      "firstName": "Kornienko",
-      "lastName": "bohdan",
-      "email": "bogdanburn123@gmail.com",
-      "phone": "0979608233",
-      "id": 1657271847013
-    },
-    {
-      "firstName": "Kornienko",
-      "lastName": "bohdans",
-      "email": "bogdanburn123@gmail.com",
-      "phone": "0979608233",
-      "id": 1657271858052
+      "id": 1657275407945
     }
   ],
   "profile": {
