@@ -1,0 +1,50 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "contacts": [
+    {
+      "firstName": "Kornienko",
+      "lastName": "bohdan",
+      "email": "bogdanburn123@gmail.com",
+      "phone": "0979608233",
+      "id": 1657271287174
+    },
+    {
+      "firstName": "fdxfds",
+      "lastName": "fsdf",
+      "email": "bogdanburn123@gmail.com",
+      "phone": "0979608233",
+      "id": 1657271292446
+    },
+    {
+      
+      "firstName": "Kornienko",
+      "lastName": "bohdan",
+      "email": "bogdanburn123@gmail.com",
+      "phone": "0979608233",
+      "id": 1657271847013
+    },
+    {
+      "firstName": "Kornienko",
+      "lastName": "bohdans",
+      "email": "bogdanburn123@gmail.com",
+      "phone": "0979608233",
+      "id": 1657271858052
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

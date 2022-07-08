@@ -1,0 +1,27 @@
+*{
+  box-sizing: border-box;
+}
+.container{
+  margin: auto;
+  border: 4px solid;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: darkgrey;
+}
+.main {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+  min-width: 60%;
+}
+.header-app{
+  margin: 20px auto;
+  text-align: center;
+  min-width: 50%;
+  border: 4px solid black;
+  background-color: aliceblue;
+}
