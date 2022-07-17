@@ -1,10 +1,10 @@
 import React, {useState } from 'react';
 import { connect } from 'react-redux';
 import contactService from '../../contact-service';
-import { deleteContact,createContact,updateContact } from '../../store/actions/ContactAction';
+import {createContactAction,updateContactAction, deleteContactAction } from '../../store/actions/ContactAction';
 import './ContactForm.css';
 
-function ContactForm({contactForEdit, onDelete,createContact,updateContact}){
+function ContactForm({contactForEdit, onDelete,createContactAction,updateContactAction}){
 
 	
 	const [editContact, setEditContact] = useState(contactForEdit)
@@ -33,12 +33,12 @@ function ContactForm({contactForEdit, onDelete,createContact,updateContact}){
 		if (!editContact.id){
 			const newContact = {...editContact, id:Date.now()}
 			contactService.post('/',newContact)
-			.then(({data}) => {createContact(data)})
+			.then(({data}) => {createContactAction(data)})
 			.catch(err =>console.log(err))
 		}
 		else {
 			contactService.put(`/${editContact.id}`, editContact)
-			.then(({data}) => {updateContact(data)})
+			.then(({data}) => {updateContactAction(data)})
 			.catch(err =>console.log(err))
 
 		}
@@ -52,7 +52,7 @@ function ContactForm({contactForEdit, onDelete,createContact,updateContact}){
     .catch(err => console.log(err))  
 	onDelete((editContact.id))
 	}
-	console.log(editContact);
+	// console.log(editContact);
 		return (
 			<form id='contact-form' onSubmit={onFormSubmit}>
 				<div className='form-container'>
@@ -122,9 +122,9 @@ function ContactForm({contactForEdit, onDelete,createContact,updateContact}){
 
  
  const mapDispatchToProps = {
-	onDelete: deleteContact,
-	createContact,
-	updateContact,
+	onDelete: deleteContactAction,
+	createContactAction,
+	updateContactAction,
  };
 
 export default connect(null,mapDispatchToProps) (ContactForm)

@@ -1,19 +1,35 @@
 import React, { useEffect } from 'react';
 import ContactItem from '../ContactItem/ContactItem';
 import './ContactList.css';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import contactService from '../../contact-service';
-import { getContact, deleteContact,addNewContact,selectContact } from '../../store/actions/ContactAction';
+import { deleteContactAction,addNewContact,selectContact, getContactsAction} from '../../store/actions/ContactAction';
 
-function ContactList({contacts,getContact, addNewContact,selectContact, deleteContact}){
+function ContactList(){
+
+	const dispatch = useDispatch()
+	const { contacts } = useSelector((state) => state)
+
 
 	useEffect(() => {
-		contactService.get('/')
-		.then(({data}) => getContact(data))
-    .catch(({statusText}) => console.log(statusText))
-  }, [getContact])
+	  dispatch(getContactsAction())
+	
+	  
+	}, [dispatch])
+	
 
 
+// 	useEffect(() => {
+// 		contactService.get('/')
+// 		.then(({data}) => {dispatch(getContactsAction(data))
+// 		})
+		
+//     .catch(({statusText}) => console.log(statusText))
+//   }, [dispatch])
+
+  	const addContact = () => {
+		dispatch(addNewContact())
+	}
 
 		return (
 			<div className='list-container'>
@@ -23,29 +39,31 @@ function ContactList({contacts,getContact, addNewContact,selectContact, deleteCo
 							<ContactItem
 								key={contact.id}
 								contact={contact}
-								onDelete={deleteContact}
+								onDelete={deleteContactAction}
                				 onEdit={selectContact}
 							/>
 						);
 					})}
 				</div>
-				<button id='new' onClick={addNewContact}>New</button>
+				<button id='new' onClick={addContact}>New</button>
 			</div>
 		);
 	}
 
-	const mapStateToProps = ({contacts}) => ({
+	// const mapStateToProps = ({contacts}) => ({
 		
-			contacts,
+	// 		contacts,
 		
-	})
+	// })
 	
-	const mapDispatchToProps = {
-		getContact,
-		addNewContact,
-		selectContact,
-		deleteContact,
-		}
+	// const mapDispatchToProps = {
+	// 	getContact,
+	// 	addNewContact,
+	// 	selectContact,
+	// 	deleteContact,
+	// 	}
 
 
-export default connect(mapStateToProps,mapDispatchToProps) (ContactList)
+// export default connect(mapStateToProps,mapDispatchToProps) (ContactList)
+
+export default ContactList
