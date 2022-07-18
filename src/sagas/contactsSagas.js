@@ -3,15 +3,21 @@ import {
      createContactError,
      createContactRequest, 
      createContactSuccsess, 
+     deleteContactError, 
+     deleteContactRequest, 
+     deleteContactSuccsess, 
      getContactsError, 
      getContactsRequest, 
-     getContactsSuccsess 
+     getContactsSuccsess, 
+     updateContactError,
+     updateContactRequest,
+     updateContactSuccsess
     } 
     from '../store/actions/ContactAction'
 import contactService from '../contact-service'
 
 export function* getContactsSaga(){
-    yield put(getContactsRequest)
+    yield put(getContactsRequest())
         try {
             const contacts = yield contactService.get('/').then(({data})=>data)
             yield put(getContactsSuccsess(contacts))
@@ -22,7 +28,7 @@ export function* getContactsSaga(){
 }
 
 export function* createContactSaga({payload}){
-    yield put(createContactRequest)
+    yield put(createContactRequest())
     try {
         const newContact = yield contactService.post('/', payload)
         .then(({data})=>data)
@@ -34,3 +40,28 @@ export function* createContactSaga({payload}){
     }
 }
 
+export function* updateContactSaga({payload}){
+    yield put(updateContactRequest())
+    try {
+        const updateContact = yield contactService.put(`/${payload.id}`, payload)
+        .then(({data})=>data)
+        yield put(updateContactSuccsess(updateContact))
+        
+    } catch (error) {
+        yield put(updateContactError(error))
+        
+    }
+}
+
+export function* deleteContactSaga({payload}){
+    yield put(deleteContactRequest())
+    try {
+        const deleteContact = yield contactService.delete(`/${payload.id}`, payload)
+        .then(({data})=>data)
+        yield put(deleteContactSuccsess(deleteContact))
+        
+    } catch (error) {
+        yield put(deleteContactError(error))
+        
+    }
+}

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import ContactItem from '../ContactItem/ContactItem';
 import './ContactList.css';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import contactService from '../../contact-service';
-import { deleteContactAction,addNewContact,selectContact, getContactsAction} from '../../store/actions/ContactAction';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+import { deleteContactAction,addNewContact, getContactsAction, selectContact} from '../../store/actions/ContactAction';
 
 function ContactList(){
 
@@ -11,25 +12,29 @@ function ContactList(){
 	const { contacts } = useSelector((state) => state)
 
 
-	useEffect(() => {
-	  dispatch(getContactsAction())
-	
+		useEffect(() => {
+			dispatch(getContactsAction())
 	  
-	}, [dispatch])
+		  }, [dispatch])
 	
 
+	
 
-// 	useEffect(() => {
-// 		contactService.get('/')
-// 		.then(({data}) => {dispatch(getContactsAction(data))
-// 		})
-		
-//     .catch(({statusText}) => console.log(statusText))
-//   }, [dispatch])
+const onDelete = (contact) => {
+	dispatch(deleteContactAction(contact));
+};
 
-  	const addContact = () => {
+
+
+	const addContact = () => {
 		dispatch(addNewContact())
 	}
+
+
+const onEdit = (contact) => { 
+		dispatch(selectContact(contact))
+	}
+  
 
 		return (
 			<div className='list-container'>
@@ -39,8 +44,8 @@ function ContactList(){
 							<ContactItem
 								key={contact.id}
 								contact={contact}
-								onDelete={deleteContactAction}
-               				 onEdit={selectContact}
+								onDelete={onDelete}
+               				 onEdit = {onEdit}
 							/>
 						);
 					})}
@@ -50,20 +55,6 @@ function ContactList(){
 		);
 	}
 
-	// const mapStateToProps = ({contacts}) => ({
-		
-	// 		contacts,
-		
-	// })
 	
-	// const mapDispatchToProps = {
-	// 	getContact,
-	// 	addNewContact,
-	// 	selectContact,
-	// 	deleteContact,
-	// 	}
-
-
-// export default connect(mapStateToProps,mapDispatchToProps) (ContactList)
 
 export default ContactList

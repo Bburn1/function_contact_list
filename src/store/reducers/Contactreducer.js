@@ -12,7 +12,7 @@ const initialState = {
 }
 
 
-export default function toContactReucer(state = initialState,{type, payload}) {
+export default function toContactReducer(state = initialState,{type, payload}) {
 
     switch(type){
 
@@ -20,7 +20,9 @@ export default function toContactReucer(state = initialState,{type, payload}) {
         case SELECT_CONTACT: return{...state, selectedContact:payload}
         
         case ACTION_TYPES.DELETE_CONTACT_SUCCSESS: return {...state, contacts: state.contacts
-            .filter((contact)=> contact.id !==payload), isFetching:false, selectedContact:createEmptyContact()}
+            .filter((contact)=> contact.id !==payload), isFetching:false
+            , selectedContact:createEmptyContact()
+        }
         case ACTION_TYPES.DELETE_CONTACT_REQUEST: return {...state, isFetching:true}
         case ACTION_TYPES.DELETE_CONTACT_ERROR: return {...state, error:payload, isFetching:true}
         

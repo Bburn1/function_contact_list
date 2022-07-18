@@ -1,12 +1,13 @@
-import React, {useState } from 'react';
-import { connect } from 'react-redux';
-import contactService from '../../contact-service';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {createContactAction,updateContactAction, deleteContactAction } from '../../store/actions/ContactAction';
 import './ContactForm.css';
 
-function ContactForm({contactForEdit, onDelete,createContactAction,updateContactAction}){
+function ContactForm({contactForEdit}){
 
 	
+	const dispatch = useDispatch()
+
 	const [editContact, setEditContact] = useState(contactForEdit)
 
 	function createEmptyContact() {
@@ -17,6 +18,7 @@ function ContactForm({contactForEdit, onDelete,createContactAction,updateContact
 			phone: '',
 		};
 	}
+
 
 	const onInputChange = (e) => {
 		setEditContact({...editContact, [e.target.name]: e.target.value})
@@ -31,28 +33,24 @@ function ContactForm({contactForEdit, onDelete,createContactAction,updateContact
 		e.preventDefault();
 
 		if (!editContact.id){
-			const newContact = {...editContact, id:Date.now()}
-			contactService.post('/',newContact)
-			.then(({data}) => {createContactAction(data)})
-			.catch(err =>console.log(err))
+			
+	    dispatch(createContactAction(editContact))
 		}
 		else {
-			contactService.put(`/${editContact.id}`, editContact)
-			.then(({data}) => {updateContactAction(data)})
-			.catch(err =>console.log(err))
-
+	
+			dispatch(updateContactAction(editContact))
 		}
 		setEditContact(createEmptyContact());
 	};
 
 
 	const onContactDelete = () => {
-    contactService.delete(`/${(editContact.id)}`)
-    .then(({statusText})=> console.log(statusText))
-    .catch(err => console.log(err))  
-	onDelete((editContact.id))
+		
+	dispatch(deleteContactAction(editContact))
 	}
+
 	// console.log(editContact);
+
 		return (
 			<form id='contact-form' onSubmit={onFormSubmit}>
 				<div className='form-container'>
@@ -119,12 +117,5 @@ function ContactForm({contactForEdit, onDelete,createContactAction,updateContact
 			</form>
 		);
 	}
+	export default  ContactForm
 
- 
- const mapDispatchToProps = {
-	onDelete: deleteContactAction,
-	createContactAction,
-	updateContactAction,
- };
-
-export default connect(null,mapDispatchToProps) (ContactForm)
