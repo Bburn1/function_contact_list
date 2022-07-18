@@ -33,7 +33,7 @@ function ContactForm({contactForEdit}){
 		e.preventDefault();
 
 		if (!editContact.id){
-			
+			editContact.id = Date.now()
 	    dispatch(createContactAction(editContact))
 		}
 		else {
@@ -46,7 +46,7 @@ function ContactForm({contactForEdit}){
 
 	const onContactDelete = () => {
 		
-	dispatch(deleteContactAction(editContact))
+	dispatch(deleteContactAction(editContact.id))
 	}
 
 	// console.log(editContact);

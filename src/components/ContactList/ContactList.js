@@ -20,8 +20,8 @@ function ContactList(){
 
 	
 
-const onDelete = (contact) => {
-	dispatch(deleteContactAction(contact));
+const onDelete = (id) => {;
+	dispatch(deleteContactAction(id));
 };
 
 

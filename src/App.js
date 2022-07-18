@@ -11,6 +11,7 @@ function App({selectedContact}) {
 				<h1 className='header-app'>Contact List</h1>
 				<div className='main'>
 					<ContactList
+					
 						
 					/>
 					<ContactForm

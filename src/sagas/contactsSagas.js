@@ -56,9 +56,8 @@ export function* updateContactSaga({payload}){
 export function* deleteContactSaga({payload}){
     yield put(deleteContactRequest())
     try {
-        const deleteContact = yield contactService.delete(`/${payload.id}`, payload)
-        .then(({data})=>data)
-        yield put(deleteContactSuccsess(deleteContact))
+        yield contactService.delete(`/${payload}`)
+        yield put(deleteContactSuccsess(payload))
         
     } catch (error) {
         yield put(deleteContactError(error))

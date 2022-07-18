@@ -16,7 +16,7 @@ export default function toContactReducer(state = initialState,{type, payload}) {
 
     switch(type){
 
-        case ADD_NEW_CONTACT: return {...state, selectedContact:createEmptyContact()}
+        case ADD_NEW_CONTACT: return {...state, selectedContact:createEmptyContact(),}
         case SELECT_CONTACT: return{...state, selectedContact:payload}
         
         case ACTION_TYPES.DELETE_CONTACT_SUCCSESS: return {...state, contacts: state.contacts
@@ -26,7 +26,7 @@ export default function toContactReducer(state = initialState,{type, payload}) {
         case ACTION_TYPES.DELETE_CONTACT_REQUEST: return {...state, isFetching:true}
         case ACTION_TYPES.DELETE_CONTACT_ERROR: return {...state, error:payload, isFetching:true}
         
-        case ACTION_TYPES.POST_CONTACT_SUCCSESS: return {...state, contacts: [...state.contacts, payload], isFetching:true}
+        case ACTION_TYPES.POST_CONTACT_SUCCSESS: return {...state, contacts: [...state.contacts,payload], isFetching:true}
         case ACTION_TYPES.POST_CONTACT_REQUEST:return {...state, isFetching:true}
         case ACTION_TYPES.POST_CONTACT_ERROR:return {...state, error:payload, isFetching:true}
         
@@ -40,13 +40,7 @@ export default function toContactReducer(state = initialState,{type, payload}) {
         case ACTION_TYPES.GET_CONTACTS_REQUEST:return{...state, isFetching:true}
         case ACTION_TYPES.GET_CONTACTS_ERROR:return{...state, error:payload, isFetching:true}  
 
-        // case GET_CONTACT: return {...state, contacts: payload, selectedContact:createEmptyContact()}
-        // case DELETE_CONTACT: return {...state, contacts: state.contacts
-        //     .filter((contact)=> contact.id !==payload), selectedContact:createEmptyContact()}
-        // case UPDATE_CONTACT: return {...state, contacts: state.contacts
-        //     .map((contact)=> contact.id !== payload.id ? contact : payload),
-        //     selectedContact:createEmptyContact()}
-        // case CREATE_CONTACT: return{...state, contacts: [...state.contacts, payload]}
+        
        
         default:return state
          
